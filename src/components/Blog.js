@@ -1,44 +1,26 @@
-import React, { useEffect, useState } from "react"
-import axios from 'axios'
+import React from 'react'
 
-export default function Blog(){
-    // state holding blog posts
-    const [posts, setPosts] = useState([])
-    
-    async function fetchPosts(){
-        try {
-            const url = `http://localhost:3000/posts`
-            const response = await axios.get(url)
-            let responseData = (response.data.posts)
-            console.log(responseData)
+export default function Blog(props){
+    const oneTag = (post) => post.tags.map(tag => {
+                return (
+                    <li style={{listStyleType:"none", display:"inline-block", margin: "0 5px"}}>{tag}</li>
+                )
+            })
 
-            // set state
-            setPosts(responseData)
-
-        } catch(err) {
-            console.log(err)
-        }
-    }
-
-    useEffect(() => {
-        fetchPosts()
-    }, [])
-
-    const renderPosts = posts.map((post, index) => {
+    const renderPosts = props.posts.map((post, index) => {
         return (
             <div key={index}>
                 <p>{post.created}</p>
                 <p><a href={`/posts/${post.id}`} style={{textDecoration:"none", color:"black"}}>{post.title}</a></p>
+                <ul style={{paddingLeft:"0px"}}>{ oneTag(post) }</ul>
                 <p>{post.content}</p>
             </div>
         )
     })
 
     return (
-        <div>
+        <div style={{margin: "0 auto", width: "400px"}}>
             {renderPosts}
-
         </div>
     )
-
 }

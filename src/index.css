@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Bellefair&family=Cinzel&display=swap');
 
+* {
+  font-family: 'Bellefair', serif;
+}
+
 body {
   margin: 0;
   font-family: 'Bellefair', serif;
