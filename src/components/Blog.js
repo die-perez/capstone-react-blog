@@ -1,9 +1,10 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
 
 export default function Blog(props){
     const oneTag = (post) => post.tags.map(tag => {
                 return (
-                    <li style={{listStyleType:"none", display:"inline-block", margin: "0 5px"}}>{tag}</li>
+                    <li style={{listStyleType:"none", display:"inline-block", margin: "0 5px", color: "gray"}}>{tag}</li>
                 )
             })
 
@@ -13,7 +14,7 @@ export default function Blog(props){
                 <p>{post.created}</p>
                 <p><a href={`/posts/${post.id}`} style={{textDecoration:"none", color:"black"}}>{post.title}</a></p>
                 <ul style={{paddingLeft:"0px"}}>{ oneTag(post) }</ul>
-                <p>{post.content}</p>
+                <p><ReactMarkdown>{post.content}</ReactMarkdown></p>
             </div>
         )
     })

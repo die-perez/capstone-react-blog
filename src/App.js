@@ -46,11 +46,11 @@ function App() {
                   const foundPost = posts.find(onePost => onePost.id.toString() === props.match.params.id) || {tags:[]}
                   console.log(foundPost)
                   props = { ...props, ...foundPost}
-              return <Post {...props} />
+              return <Post {...props} onDelete={fetchPosts}/>
               }}
           />
         </Router>
-      <AddPost />
+      <AddPost onSubmit={fetchPosts}/>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap'
 
 import { useState } from 'react'
 
-export default function AddPost(){
+export default function AddPost(props){
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [tags, setTags] = useState('')
@@ -19,6 +19,7 @@ export default function AddPost(){
                 tags: tags.split(',')
             }
             const response = await axios.post(`http://localhost:3000/posts`, requestBody)
+            props.onSubmit()
             console.log('💀',response)
         } catch (error) {
             console.log(error)

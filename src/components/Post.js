@@ -1,4 +1,7 @@
 import React from 'react'
+import Delete from './Delete'
+import ReactMarkdown from 'react-markdown'
+import '../App.css'
 
 export default function Post(props) {
     console.log(props)
@@ -13,7 +16,10 @@ export default function Post(props) {
             <p>{ props.title }</p>
             <p>{props.created}</p>
             <ul style={{paddingLeft:"0px"}}>{ oneTag }</ul>
-            <p>{ props.content }</p>
+            <p><ReactMarkdown>{props.content}</ReactMarkdown></p>
+            <div>
+                <Delete {...props} />
+            </div>
         </div>
     )
 }
