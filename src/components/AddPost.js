@@ -1,7 +1,7 @@
 import axios from "axios"
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Form, Button } from 'react-bootstrap'
-
+import { Form, Button, Modal } from 'react-bootstrap'
+import '../App.css'
 import { useState } from 'react'
 
 export default function AddPost(props){
@@ -24,25 +24,34 @@ export default function AddPost(props){
         } catch (error) {
             console.log(error)
         }
+        props.onHide()  
     }
 
     return(
-        <Form style={{margin: "0 auto", width: "350px"}}>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>Title</Form.Label>
-                <Form.Control type="email" placeholder="Title" onChange={e => setTitle(e.target.value)} value={title}/>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>Tags</Form.Label>
-                <Form.Control type="email" placeholder="Tags" onChange={e => setTags(e.target.value)} value={tags} />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Textarea</Form.Label>
-                <Form.Control as="textarea" rows={3} onChange={e => setContent(e.target.value)} value={content}/>
-            </Form.Group>
-            <Button variant="dark" type="submit" onClick={submitPost}>
-                Submit
-            </Button>
-        </Form>
+        <>
+            <Modal
+                {...props}
+                size="md"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                    New post
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="email" placeholder="Title" onChange={e => setTitle(e.target.value)} value={title}/>
+                    <Form.Label>Tags</Form.Label>
+                    <Form.Control type="email" placeholder="ex: magic, tarot, morticia" onChange={e => setTags(e.target.value)} value={tags} />
+                    <Form.Label>Textarea</Form.Label>
+                    <Form.Control as="textarea" rows={3} onChange={e => setContent(e.target.value)} value={content}/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={submitPost} variant="dark" type="submit">submit</Button>
+                </Modal.Footer>
+            </Modal>
+        </>
     )
 }

@@ -10,11 +10,12 @@ export default function Blog(props){
 
     const renderPosts = props.posts.map((post, index) => {
         return (
-            <div key={index}>
-                <p>{post.created}</p>
+            <div key={index} style={{marginBottom: "50px"}}>
+                <p style={{fontSize: "14px", textAlign: "right"}}>{post.created}</p>
                 <p><a href={`/posts/${post.id}`} style={{textDecoration:"none", color:"black"}}>{post.title}</a></p>
                 <ul style={{paddingLeft:"0px"}}>{ oneTag(post) }</ul>
                 <p><ReactMarkdown>{post.content}</ReactMarkdown></p>
+                <hr style={{marginTop: "65px", width: "50px"}}/>
             </div>
         )
     })

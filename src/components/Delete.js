@@ -2,7 +2,6 @@ import React from "react"
 import Trash from "../img/trash.png"
 import axios from "axios"
 import { Link } from 'react-router-dom'
-import { useState } from "react"
 
 export default function Delete(props){
     
