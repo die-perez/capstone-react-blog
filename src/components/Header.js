@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AddPost from './AddPost'
 
-export default function Header(){
+export default function Header(props){
     const [modalShow, setModalShow] = useState(false)
     const handleClose = () => setModalShow(false);
     
@@ -20,6 +20,7 @@ export default function Header(){
             <AddPost
                 show={modalShow}
                 onHide={handleClose}
+                {...props}
             />
         </div>
     )

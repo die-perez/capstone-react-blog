@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header refreshPosts={fetchPosts}/>
         <Router>
           <Route exact path="/posts" render={() => <Blog posts={ posts } /> } />
           <Route
@@ -50,7 +50,6 @@ function App() {
               }}
           />
         </Router>
-      <AddPost onSubmit={fetchPosts}/>
     </div>
   )
 }

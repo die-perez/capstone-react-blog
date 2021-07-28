@@ -2,7 +2,7 @@ import axios from "axios"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Button, Modal } from 'react-bootstrap'
 import '../App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function AddPost(props){
     const [title, setTitle] = useState('')
@@ -19,12 +19,13 @@ export default function AddPost(props){
                 tags: tags.split(',')
             }
             const response = await axios.post(`http://localhost:3000/posts`, requestBody)
-            props.onSubmit()
+            
             console.log('💀',response)
         } catch (error) {
             console.log(error)
         }
         props.onHide()  
+        props.refreshPosts()
     }
 
     return(
@@ -41,11 +42,11 @@ export default function AddPost(props){
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form.Label>Title</Form.Label>
+                    <Form.Label style={{marginTop:"5px"}}>Title</Form.Label>
                     <Form.Control type="email" placeholder="Title" onChange={e => setTitle(e.target.value)} value={title}/>
-                    <Form.Label>Tags</Form.Label>
+                    <Form.Label style={{marginTop:"5px"}}>Tags</Form.Label>
                     <Form.Control type="email" placeholder="ex: magic, tarot, morticia" onChange={e => setTags(e.target.value)} value={tags} />
-                    <Form.Label>Textarea</Form.Label>
+                    <Form.Label style={{marginTop:"5px"}}>Textarea</Form.Label>
                     <Form.Control as="textarea" rows={3} onChange={e => setContent(e.target.value)} value={content}/>
                 </Modal.Body>
                 <Modal.Footer>
